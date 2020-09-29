@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h2>Logged in as: <%=  current_user.name%></h2>
+<% if current_user %>
+  <h2>Logged in as: <%=  current_user.name %></h2>
+<% end %>
 
 <h1>Users</h1>
 
