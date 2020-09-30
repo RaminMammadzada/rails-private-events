@@ -20,8 +20,6 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
-
-    current_user.events << @event
   end
 
   # GET /events/1/edit
@@ -31,7 +29,7 @@ class EventsController < ApplicationController
   # POST /events
   # POST /events.json
   def create
-    @event = user.event.build(event_params)
+    @event = current_user.events.build(event_params)
 
     respond_to do |format|
       if @event.save
