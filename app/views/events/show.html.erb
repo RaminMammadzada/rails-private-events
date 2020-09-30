@@ -15,7 +15,14 @@
   <%= @event.date %>
 </p>
 <div>
-  <%= @event.attendees %>%
+  <h2>Attendees</h2>
+  <%= @event.attendees.each do |attendee| %>
+    <tr>
+      <td><%= attendee.name%></td>
+      <td><%= attendee.username%></td>
+      <td><%= attendee.email%></td>
+    </tr>
+  <% end %>
 </div>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
