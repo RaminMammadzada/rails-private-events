@@ -12,15 +12,6 @@
 
 ActiveRecord::Schema.define(version: 2020_09_30_175141) do
 
-  create_table "attendees", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "event_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_attendees_on_event_id"
-    t.index ["user_id"], name: "index_attendees_on_user_id"
-  end
-
   create_table "enrollments", force: :cascade do |t|
     t.integer "event_id"
     t.integer "user_id"
