@@ -18,5 +18,9 @@ Rails.application.routes.draw do
   post '/join',  to:'enrollments#create'
   get '/join', to:'enrollments#create'
 
+  post '/destroy',  to:'enrollments#destroy'
+  get '/destroy', to:'enrollments#destroy'
+
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

@@ -18,15 +18,32 @@
   <strong>Date:</strong>
   <%= @event.date %>
 </p>
-<div>
-  <h2>Attendees</h2>
-  <%= @event.attendees.each do |attendee| %>
+
+
+<h3>Attendees of this event:</h3>
+<table>
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @event.attendees.each do |attendee| %>
     <tr>
-      <td><%= attendee.name%></td>
-      <td><%= attendee.username%></td>
-      <td><%= attendee.email%></td>
+      <td><%= attendee.name %></td>
+      <td><%= attendee.username %></td>
+      <td><%= attendee.email %></td>
+      <td><%= attendee.id %></td>
+      <td><%= link_to 'Remove', destroy_path(event_id: @event.id, attendee_id: attendee.id)%></td>
     </tr>
   <% end %>
-</div>
+
+  </tbody>
+</table>
+
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>

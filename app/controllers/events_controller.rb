@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     if current_user
-      @events = current_user.events
+      @events = Event.all
+      # @events = current_user.events
     else
       redirect_to login_url
     end

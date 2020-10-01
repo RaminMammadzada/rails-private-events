@@ -5,7 +5,7 @@
 <table>
   <thead>
     <tr>
-      <th>User</th>
+      <th>Event Creator</th>
       <th>Title</th>
       <th>Description</th>
       <th>Date</th>
@@ -16,10 +16,18 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
+        <td><%= event.creator.name %></td>
         <td><%= event.title %></td>
         <td><%= event.description %></td>
         <td><%= event.date %></td>
-        <td><%= link_to 'Join', join_path(event_id: event.id)%></td>
+        <% if current_user.attended_events.include? event %>
+          <td><%= link_to 'Unjoin', destroy_path(event_id: event.id)%></td>
+        <% else %>
+          <td><%= link_to 'Join', join_path(event_id: event.id)%></td>
+        <% end %>
+
+
+
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
         <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
