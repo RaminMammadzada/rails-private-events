@@ -5,6 +5,10 @@
   <%= @event.title %>
 </p>
 
+<%if current_user%>
+  <%= link_to 'Join', join_path(event_id: @event.id) %>
+<%end%>
+
 <p>
   <strong>Description:</strong>
   <%= @event.description %>
