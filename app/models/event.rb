@@ -4,12 +4,12 @@ class Event < ApplicationRecord
   has_many :enrollments
   has_many :attendees, through: :enrollments, class_name: 'User', foreign_key: 'user_id'
 
-  scope :past, -> { where('date < ?', Date.today)}
-  scope :upcoming, -> { where('date >= ?', Date.today)}
+  scope :past, -> { where('date < ?', Date.today) }
+  scope :upcoming, -> { where('date >= ?', Date.today) }
   # Ex:- scope :active, -> {where(:active => true)}
   # Ex:- scope :active, -> {where(:active => true)}
 
-  validates :title, :description, :date, presence: true, uniqueness: { case_sensitive: false }, length: {maximum: 50}
-  
-  #class_name: 'User', foreign_key: 'user_id'
+  validates :title, :description, :date, :location, presence: true, length: { maximum: 50 }
+
+  # class_name: 'User', foreign_key: 'user_id'
 end
