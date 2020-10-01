@@ -17,6 +17,29 @@
 
 <br />
 
+<h3>Created Events:</h3>
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Description</th>
+    <th>Date</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @user.events.each do |event| %>
+    <tr>
+      <td><%= event.title %></td>
+      <td><%= event.description %></td>
+      <td><%= event.date %></td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
 <h3>Upcoming Attended events:</h3>
 <table>
   <thead>
