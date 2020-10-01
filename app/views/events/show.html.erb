@@ -38,7 +38,9 @@
       <td><%= attendee.username %></td>
       <td><%= attendee.email %></td>
       <td><%= attendee.id %></td>
-      <td><%= link_to 'Remove', destroy_path(event_id: @event.id, attendee_id: attendee.id)%></td>
+      <% if current_user == @event.creator || current_user == attendee %>
+        <td><%= link_to 'Remove', destroy_path(event_id: @event.id, attendee_id: attendee.id)%></td>
+      <% end %>
     </tr>
   <% end %>
 
