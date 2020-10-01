@@ -18,7 +18,7 @@ class EnrollmentsController < ApplicationController
   def destroy
     @event =  Event.find(params[:event_id])
 
-    @user = params[:attendee_id] == nil? ? current_user.id : User.find(params[:attendee_id])
+    @user = User.find(params[:attendee_id])
 
 
     if @user.attended_events.include? @event
