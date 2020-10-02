@@ -10,5 +10,4 @@ class Event < ApplicationRecord
   # Ex:- scope :active, -> {where(:active => true)}
 
   validates :title, :description, :date, :location, presence: true, length: { maximum: 50 }
-
 end

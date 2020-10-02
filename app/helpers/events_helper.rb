@@ -7,7 +7,8 @@ module EventsHelper
         messages.push(msg)
       end
 
-      error_counts_message = content_tag(:h2, event.errors.count.to_s + ' errors prohibited this post from being saved:',
+      error_counts_message = content_tag(:h2, event.errors.count.to_s +
+          ' errors prohibited this post from being saved:',
                                          class: 'total_errors')
       error_message = content_tag(:ul, class: 'all_errors') do
         messages.each { |msg| concat content_tag(:li, msg) }
@@ -30,13 +31,12 @@ module EventsHelper
   end
 
   def creator_destroy(current_user, event)
-    if current_user == event.creator
-      content_tag(:td, (link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }))
-    end
+    return unless current_user == event.creator
+
+    content_tag(:td, (link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }))
   end
 
   def operation_name(event)
-     event.title == nil ? 'Create Event' : 'Update Event'
+    event.id.nil? ? 'Create Event' : 'Update Event'
   end
-
 end
