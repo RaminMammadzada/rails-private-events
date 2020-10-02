@@ -14,3 +14,8 @@
  *= require_self
  */
 @import "bootstrap";
+
+a:hover {
+  background: #fffde6 !important;
+  border-radius: 10%;
+}

@@ -28,9 +28,15 @@ module EventsHelper
       content_tag(:td, (link_to 'Join', join_path(event_id: event.id)))
     end
   end
+
   def creator_destroy(current_user, event)
     if current_user == event.creator
       content_tag(:td, (link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' }))
     end
   end
+
+  def operation_name(event)
+     event.title == nil ? 'Create Event' : 'Update Event'
+  end
+
 end
