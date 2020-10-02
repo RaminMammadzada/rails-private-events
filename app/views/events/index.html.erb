@@ -14,25 +14,20 @@
   </thead>
 
   <tbody>
-    <% @events.past.each do |event| %>
+    <% @past_events = Event.past.all %>
+    <% @past_events.each do |event| %>
       <tr>
         <td><%= event.creator.name %></td>
         <td><%= event.title %></td>
         <td><%= event.description %></td>
         <td><%= event.date %></td>
-        <% if current_user.attended_events.include? event %>
-          <td><%= link_to 'Unjoin', destroy_path(event_id: event.id, attendee_id: current_user.id)%></td>
-        <% else %>
-          <td><%= link_to 'Join', join_path(event_id: event.id)%></td>
-        <% end %>
+        <%= display_join(current_user, event)%>
 
 
 
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <% if current_user == event.creator %>
-          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <%= creator_destroy(current_user, event)%>
       </tr>
     <% end %>
   </tbody>
@@ -52,25 +47,20 @@
   </thead>
 
   <tbody>
-    <% @events.upcoming.each do |event| %>
+    <% @upcoming_events = Event.upcoming.all %>
+    <% @upcoming_events.each do |event| %>
       <tr>
         <td><%= event.creator.name %></td>
         <td><%= event.title %></td>
         <td><%= event.description %></td>
         <td><%= event.date %></td>
-        <% if current_user.attended_events.include? event %>
-          <td><%= link_to 'Unjoin', destroy_path(event_id: event.id, attendee_id: current_user.id)%></td>
-        <% else %>
-          <td><%= link_to 'Join', join_path(event_id: event.id)%></td>
-        <% end %>
+        <%= display_join(current_user, event)%>
 
 
 
         <td><%= link_to 'Show', event %></td>
         <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <% if current_user == event.creator %>
-          <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <% end %>
+        <%= creator_destroy(current_user, event)%>
       </tr>
     <% end %>
   </tbody>

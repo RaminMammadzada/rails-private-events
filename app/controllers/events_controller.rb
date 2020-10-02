@@ -6,7 +6,6 @@ class EventsController < ApplicationController
   def index
     if current_user
       @events = Event.all
-      # @events = current_user.events
     else
       redirect_to login_url
     end
@@ -18,7 +17,11 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    @event = Event.new
+    if current_user
+      @event = Event.new
+    else
+      redirect_to login_url
+    end
   end
 
   # GET /events/1/edit
