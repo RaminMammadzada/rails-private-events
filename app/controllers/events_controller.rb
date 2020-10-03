@@ -6,6 +6,8 @@ class EventsController < ApplicationController
   def index
     if current_user
       @events = Event.all
+      @past = @events.past
+      @upcoming = @events.upcoming
     else
       redirect_to login_url
     end
