@@ -1,0 +1,49 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @event.title %>
+</p>
+
+<%= display_join(current_user, @event)%>
+
+<p>
+  <strong>Description:</strong>
+  <%= @event.description %>
+</p>
+
+<p>
+  <strong>Date:</strong>
+  <%= @event.date %>
+</p>
+
+
+<h3>Attendees of this event:</h3>
+<table>
+  <thead>
+  <tr>
+    <th>User</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th colspan="3"></th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @event.attendees.each do |attendee| %>
+    <tr>
+      <td><%= attendee.name %></td>
+      <td><%= attendee.username %></td>
+      <td><%= attendee.email %></td>
+      <td><%= attendee.id %></td>
+      <% if current_user == @event.creator || current_user == attendee %>
+        <td><%= link_to 'Remove', destroy_path(event_id: @event.id, attendee_id: attendee.id)%></td>
+      <% end %>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+
+<%= link_to 'Edit', edit_event_path(@event) %> |
+<%= link_to 'Back', events_path %>
