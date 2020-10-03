@@ -14,8 +14,7 @@
   </thead>
 
   <tbody>
-    <% @past_events = Event.past.all %>
-    <% @past_events.each do |event| %>
+    <% @events.past.each do |event| %>
       <tr>
         <td><%= event.creator.name %></td>
         <td><%= event.title %></td>
@@ -47,8 +46,7 @@
   </thead>
 
   <tbody>
-    <% @upcoming_events = Event.upcoming.all %>
-    <% @upcoming_events.each do |event| %>
+    <% @events.upcoming.each do |event| %>
       <tr>
         <td><%= event.creator.name %></td>
         <td><%= event.title %></td>
